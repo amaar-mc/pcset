@@ -35,7 +35,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   pentatonic share 5-35.
 - All prime-form keys are computed at runtime using the library's own `primeForm()`,
   so the name table is correct by construction and not reliant on hardcoded string keys.
-- `npm publish` of 0.4.0 is pending the maintainer's npm 2FA OTP.
+- Published to npm 2026-06-17 (v0.4.0).
 
 ## [0.3.0]
 
