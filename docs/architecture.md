@@ -62,5 +62,9 @@ derived from the algorithms rather than transcribed from a printed catalog. The
 structural tests (counts per cardinality, complement involution, Z-relation
 symmetry) would fail if any derivation were wrong, so the catalog is self-checking.
 Forte set-class names, which are a naming convention rather than a derivable
-property, are the one piece of reference data planned for a future release, and
-will ship with the same structural verification.
+property, are the one piece of reference data in the library (see `forte.ts`).
+Common set-class names (`commonName.ts`) follow the same approach: a small table
+of representative pitch-class sets is run through `primeForm()` at initialization
+time to produce the lookup keys, so the keys are correct by construction rather
+than being hardcoded strings. Only names that are genuinely standard in tonal
+pedagogy and post-tonal theory are included.

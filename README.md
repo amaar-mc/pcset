@@ -19,12 +19,17 @@ npm install pcset
 ## 30-second example
 
 ```ts
-import { setClass, primeForm, forte, intervalVector, sameSetClass } from "pcset";
+import { setClass, primeForm, forte, commonName, intervalVector, sameSetClass } from "pcset";
 
 primeForm([0, 4, 7]);            // [0, 3, 7]  major triad
 primeForm([0, 3, 7]);            // [0, 3, 7]  minor triad, same set class
 intervalVector([0, 4, 7]);       // [0, 0, 1, 1, 1, 0]
 forte([0, 4, 7]);                // "3-11"
+commonName([0, 4, 7]);          // "major/minor triad (3-11)"
+commonName([2, 6, 9]);          // "major/minor triad (3-11)"  -- any transposition
+commonName([0, 2, 4, 6, 8, 10]); // "whole-tone scale (6-35)"
+commonName([0, 2, 4, 5, 7, 9, 11]); // "diatonic / major scale (7-35)"
+commonName([0, 1, 2, 3, 4]);    // null  -- no standard name
 sameSetClass([0, 4, 7], [0, 3, 7]); // true
 
 setClass([0, 1, 4, 6]);
@@ -62,7 +67,8 @@ Post-tonal analysis (prime form, interval-class vectors, Z-relations) is standar
 | Z-relation detection            |  yes  |       no       |   yes   |
 | Symmetry degrees                |  yes  |       no       |   yes   |
 | Full set-class catalog          |  yes  |       no       |   yes   |
-| Forte set-class numbers         | 3 to 5, 7 to 9 | no    |   yes   |
+| Forte set-class numbers         | 3 to 9  |       no       |   yes   |
+| Common set-class names          |   yes   |       no       |   yes   |
 | Zero runtime dependencies       |  yes  |      yes        |   no    |
 | Runs in the browser             |  yes  |      yes        |   no    |
 | Language                        |  TS   |     JS/TS       | Python  |
@@ -80,6 +86,7 @@ All functions are pure. Inputs are read-only number arrays; outputs are normaliz
 - `primeForm(pcs)` returns the canonical set-class representative (Rahn algorithm), starting on 0.
 - `intervalVector(pcs)` returns the interval-class vector `[ic1..ic6]`.
 - `forte(pcs)` returns the Forte set-class number (for example "3-11" or "4-z15"), or null.
+- `commonName(pcs)` returns a widely recognized common name for the set class (for example "whole-tone scale (6-35)"), or null when none is assigned. Transposition- and inversion-invariant.
 - `setClass(pcs)` returns the full `SetClassInfo` (normal order, prime form, interval vector, complement, Z-partner, symmetry).
 
 ### Transform
@@ -121,7 +128,6 @@ hexachord, that all 50 classes are covered, and that each label is unique.
 
 ## Roadmap
 
-- Common set-class names (major scale, octatonic, and so on).
 - Abstract subset and superset relations between set classes.
 - Generalization to mod-n universes for microtonal work.
 

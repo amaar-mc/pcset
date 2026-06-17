@@ -1,6 +1,6 @@
 {
   "name": "pcset",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Post-tonal pitch-class set theory: normal order, prime form, interval-class vector, Z-relations, and set-class analysis. Typed, zero dependencies, browser and Node.",
   "keywords": [
     "music",
