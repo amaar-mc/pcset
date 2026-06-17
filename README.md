@@ -1,5 +1,10 @@
 # pcset
 
+<p align="center">
+  <img src="assets/logo.png" alt="pcset logo" width="160">
+</p>
+
+[![npm](https://img.shields.io/npm/v/pcset)](https://www.npmjs.com/package/pcset)
 [![CI](https://github.com/amaar-mc/pcset/actions/workflows/ci.yml/badge.svg)](https://github.com/amaar-mc/pcset/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
