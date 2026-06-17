@@ -7,9 +7,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Planned
-- Forte set-class names (for example `3-11`, `6-z44`).
+- Forte numbers for hexachords (cardinality 6).
 - Common set-class names.
 - Abstract subset and superset relations between set classes.
+
+## [0.2.0]
+
+### Added
+- `forte(pcs)` and `forteName(key)`: Forte set-class numbers for cardinalities 3 to 5 and 7 to 9 (for example "3-11", "4-z15"). Labels for 7 to 9 are derived from their complements. Hexachords are not yet labeled.
+- `forte` field on `SetClassInfo`.
+
+### Notes
+- Forte labels are verified structurally: counts per cardinality, complement pairing, and a cross-check that the z designation matches the library's own Z-relation detection across all 158 labeled set classes.
 
 ## [0.1.0]
 
