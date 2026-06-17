@@ -7,9 +7,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Planned
-- Forte numbers for hexachords (cardinality 6).
 - Common set-class names.
 - Abstract subset and superset relations between set classes.
+
+## [0.3.0]
+
+### Added
+- Forte numbers for the 50 hexachords (cardinality 6), with the z designation on Z-related classes (for example "6-z44"). `forte` and `forteName` now cover every set class of cardinalities 3 to 9.
+
+### Notes
+- Hexachord labels were taken from the music21 Forte table and cross-checked against this library's independently computed catalog. The structural tests confirm that the z marking matches the catalog's interval-vector Z-relation detection for every hexachord, that all 50 classes are covered, and that each of the 208 labels is unique.
 
 ## [0.2.0]
 

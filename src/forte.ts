@@ -2,12 +2,17 @@ import { catalog } from "./catalog";
 import { primeForm } from "./normal";
 
 /**
- * Representative pitch-class sets for Forte's set classes of cardinality 3, 4, and 5.
+ * Representative pitch-class sets for Forte's set classes of cardinality 3, 4, 5, and 6.
  * Each representative is run through primeForm() to key it, so a listed form may be
  * either Forte's or Rahn's prime form; both pick out the same set class. Cardinalities
  * 7, 8, and 9 are derived by complement, since a set class and its complement share the
- * Forte ordinal and Z designation. Hexachords (cardinality 6) are not yet labeled, and
- * cardinalities outside 3 through 9 have no Forte number.
+ * Forte ordinal and Z designation. Cardinalities outside 3 through 9 have no Forte number.
+ *
+ * The hexachord representatives and their z designations come from the music21 Forte table
+ * and are cross-checked against this library's independently computed catalog: the
+ * structural tests confirm that the z marking matches the catalog's interval-vector Z
+ * detection for every hexachord, that all 50 classes are covered, and that each label is
+ * unique.
  */
 const REPRESENTATIVES: ReadonlyArray<readonly [string, readonly number[]]> = [
   ["3-1", [0, 1, 2]],
@@ -89,6 +94,56 @@ const REPRESENTATIVES: ReadonlyArray<readonly [string, readonly number[]]> = [
   ["5-z36", [0, 1, 2, 4, 7]],
   ["5-z37", [0, 3, 4, 5, 8]],
   ["5-z38", [0, 1, 2, 5, 8]],
+  ["6-1", [0, 1, 2, 3, 4, 5]],
+  ["6-2", [0, 1, 2, 3, 4, 6]],
+  ["6-z3", [0, 1, 2, 3, 5, 6]],
+  ["6-z4", [0, 1, 2, 4, 5, 6]],
+  ["6-5", [0, 1, 2, 3, 6, 7]],
+  ["6-z6", [0, 1, 2, 5, 6, 7]],
+  ["6-7", [0, 1, 2, 6, 7, 8]],
+  ["6-8", [0, 2, 3, 4, 5, 7]],
+  ["6-9", [0, 1, 2, 3, 5, 7]],
+  ["6-z10", [0, 1, 3, 4, 5, 7]],
+  ["6-z11", [0, 1, 2, 4, 5, 7]],
+  ["6-z12", [0, 1, 2, 4, 6, 7]],
+  ["6-z13", [0, 1, 3, 4, 6, 7]],
+  ["6-14", [0, 1, 3, 4, 5, 8]],
+  ["6-15", [0, 1, 2, 4, 5, 8]],
+  ["6-16", [0, 1, 4, 5, 6, 8]],
+  ["6-z17", [0, 1, 2, 4, 7, 8]],
+  ["6-18", [0, 1, 2, 5, 7, 8]],
+  ["6-z19", [0, 1, 3, 4, 7, 8]],
+  ["6-20", [0, 1, 4, 5, 8, 9]],
+  ["6-21", [0, 2, 3, 4, 6, 8]],
+  ["6-22", [0, 1, 2, 4, 6, 8]],
+  ["6-z23", [0, 2, 3, 5, 6, 8]],
+  ["6-z24", [0, 1, 3, 4, 6, 8]],
+  ["6-z25", [0, 1, 3, 5, 6, 8]],
+  ["6-z26", [0, 1, 3, 5, 7, 8]],
+  ["6-27", [0, 1, 3, 4, 6, 9]],
+  ["6-z28", [0, 1, 3, 5, 6, 9]],
+  ["6-z29", [0, 1, 3, 6, 8, 9]],
+  ["6-30", [0, 1, 3, 6, 7, 9]],
+  ["6-31", [0, 1, 3, 5, 8, 9]],
+  ["6-32", [0, 2, 4, 5, 7, 9]],
+  ["6-33", [0, 2, 3, 5, 7, 9]],
+  ["6-34", [0, 1, 3, 5, 7, 9]],
+  ["6-35", [0, 2, 4, 6, 8, 10]],
+  ["6-z36", [0, 1, 2, 3, 4, 7]],
+  ["6-z37", [0, 1, 2, 3, 4, 8]],
+  ["6-z38", [0, 1, 2, 3, 7, 8]],
+  ["6-z39", [0, 2, 3, 4, 5, 8]],
+  ["6-z40", [0, 1, 2, 3, 5, 8]],
+  ["6-z41", [0, 1, 2, 3, 6, 8]],
+  ["6-z42", [0, 1, 2, 3, 6, 9]],
+  ["6-z43", [0, 1, 2, 5, 6, 8]],
+  ["6-z44", [0, 1, 2, 5, 6, 9]],
+  ["6-z45", [0, 2, 3, 4, 6, 9]],
+  ["6-z46", [0, 1, 2, 4, 6, 9]],
+  ["6-z47", [0, 1, 2, 4, 7, 9]],
+  ["6-z48", [0, 1, 2, 5, 7, 9]],
+  ["6-z49", [0, 1, 3, 4, 7, 9]],
+  ["6-z50", [0, 1, 4, 6, 7, 9]],
 ];
 
 const keyOf = (pcs: readonly number[]): string => primeForm(pcs).join(",");
@@ -125,9 +180,8 @@ export function forteName(primeFormKey: string): string | null {
 }
 
 /**
- * Forte set-class number of a pitch-class set, for example "3-11" or "4-z15".
- * Returns null for cardinalities outside 3 through 9 and, for now, for hexachords
- * (cardinality 6), whose labels are pending a verified complete source.
+ * Forte set-class number of a pitch-class set, for example "3-11", "4-z15", or "6-z44".
+ * Returns null for cardinalities outside 3 through 9.
  */
 export function forte(pcs: readonly number[]): string | null {
   return forteName(keyOf(pcs));

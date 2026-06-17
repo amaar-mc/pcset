@@ -39,6 +39,21 @@ describe("forte: known values", () => {
     expect(forte([0, 1, 2, 4, 7])).toBe("5-z36");
   });
 
+  it("labels well-known hexachords", () => {
+    expect(forte([0, 1, 2, 3, 4, 5])).toBe("6-1"); // chromatic hexachord
+    expect(forte([0, 2, 4, 6, 8, 10])).toBe("6-35"); // whole-tone scale
+    expect(forte([0, 1, 4, 5, 8, 9])).toBe("6-20"); // hexatonic (augmented) scale
+    expect(forte([0, 2, 4, 5, 7, 9])).toBe("6-32"); // diatonic hexachord
+    expect(forte([0, 1, 2, 6, 7, 8])).toBe("6-7"); // non-Z, self-complementary
+  });
+
+  it("labels Z-related hexachord pairs with z", () => {
+    expect(forte([0, 1, 2, 3, 5, 6])).toBe("6-z3");
+    expect(forte([0, 1, 2, 3, 4, 7])).toBe("6-z36"); // Z partner of 6-z3
+    expect(forte([0, 1, 3, 4, 7, 8])).toBe("6-z19");
+    expect(forte([0, 1, 2, 5, 6, 9])).toBe("6-z44"); // Z partner of 6-z19
+  });
+
   it("derives larger cardinalities by complement", () => {
     expect(forte([0, 2, 4, 5, 7, 9, 11])).toBe("7-35"); // diatonic, complement of 5-35
     expect(forte([0, 1, 3, 4, 6, 7, 9, 10])).toBe("8-28"); // octatonic, complement of 4-28
@@ -46,11 +61,10 @@ describe("forte: known values", () => {
     expect(forte([1, 2, 3, 5, 6, 7, 9, 10, 11])).toBe("9-12"); // complement of 3-12
   });
 
-  it("returns null outside cardinalities 3 to 9 and for hexachords", () => {
+  it("returns null outside cardinalities 3 to 9", () => {
     expect(forte([])).toBeNull();
     expect(forte([0])).toBeNull();
     expect(forte([0, 1])).toBeNull();
-    expect(forte([0, 2, 4, 6, 8, 10])).toBeNull(); // hexachord, not yet labeled
     expect(forte([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])).toBeNull();
   });
 });
@@ -68,11 +82,11 @@ describe("forte: structural verification", () => {
         counts[entry.cardinality] = (counts[entry.cardinality] ?? 0) + 1;
       }
     }
-    expect(counts).toEqual({ 3: 12, 4: 29, 5: 38, 7: 38, 8: 29, 9: 12 });
+    expect(counts).toEqual({ 3: 12, 4: 29, 5: 38, 6: 50, 7: 38, 8: 29, 9: 12 });
   });
 
-  it("assigns each label exactly once (158 total)", () => {
-    expect(labeled.length).toBe(158);
+  it("assigns each label exactly once (208 total)", () => {
+    expect(labeled.length).toBe(208);
     expect(new Set(labeled).size).toBe(labeled.length);
   });
 

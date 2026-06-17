@@ -111,16 +111,16 @@ Prime form here follows the Rahn algorithm (the convention used by Straus): take
 
 ## A note on Forte numbers
 
-Forte numbers are provided for cardinalities 3 to 5 and 7 to 9. Hexachords
-(cardinality 6) return null for now, pending a verified complete catalog; every
-other set-class property (prime form, interval vector, Z-relation, complement,
-symmetry) is still available for hexachords. Because a set class and its
-complement share a Forte ordinal, the labels for cardinalities 7 to 9 are derived
-from those for 3 to 5.
+Forte numbers are provided for all set classes of cardinalities 3 to 9, including
+the 50 hexachords (cardinality 6), with the z designation marking Z-related classes
+(for example "6-z44"). Because a set class and its complement share a Forte ordinal,
+the labels for cardinalities 7 to 9 are derived from those for 3 to 5. The hexachord
+labels are cross-checked against the library's own catalog: the tests confirm that
+the z marking matches the catalog's interval-vector Z-relation detection for every
+hexachord, that all 50 classes are covered, and that each label is unique.
 
 ## Roadmap
 
-- Forte numbers for hexachords (cardinality 6), pending a verified complete source.
 - Common set-class names (major scale, octatonic, and so on).
 - Abstract subset and superset relations between set classes.
 - Generalization to mod-n universes for microtonal work.
