@@ -1,5 +1,6 @@
 export { type CatalogEntry, catalog, catalogEntry } from "./catalog";
 export { fromChroma, fromNumber, normalize, toChroma, toNumber } from "./chroma";
+export { forte, forteName } from "./forte";
 export { normalOrder, primeForm } from "./normal";
 export {
   equals,

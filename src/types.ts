@@ -18,6 +18,8 @@ export interface SetClassInfo {
   readonly normalOrder: PcSet;
   /** Canonical representative of the set class (Rahn algorithm), transposed to start on 0. */
   readonly primeForm: PcSet;
+  /** Forte set-class number (for example "3-11" or "4-z15"), or null when none is assigned. */
+  readonly forte: string | null;
   /** Number of pitch classes in the set. */
   readonly cardinality: number;
   /** Interval-class content. */
